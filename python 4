@@ -1,0 +1,43 @@
+#measurement converter
+# Conversion menu options
+from distutils.command import clean
+
+
+conversion_options = {
+    1: ('Millimeters to Centimeters', 0.1),
+    2: ('Feet to Meters', 0.3048),
+    3: ('Inches to Centimeters', 2.54),
+    4: ('Yards to Meters', 0.9144),
+    5: ('Miles to Kilometers', 1.60934)
+}
+
+def show_menu():
+    print("Unit Conversion Menu:")
+    for option, (description, _) in conversion_options.items():
+        print(f"{option}. {description}")
+    print("6. Exit")
+
+def convert_units(option, value):
+    description, conversion_factor = conversion_options[option]
+    converted_value = value * conversion_factor
+    return converted_value
+
+def main():
+    while True:
+        show_menu()
+        try:
+            choice = int(input("Please select an option (1-6): "))
+            if choice == 6:
+                print("Exiting the program.")
+                break
+            elif 1 <= choice <= 5:
+                value = float(input("Enter the value to convert: "))
+                converted_value = convert_units(choice, value)
+                print(f"The converted value is: {converted_value}")
+            else:
+                print("Invalid option. Please select a valid option from the menu.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+
+if __name__ == "__main__":
+    main()
