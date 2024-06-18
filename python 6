@@ -1,0 +1,45 @@
+#dice rolling simulator
+import random
+
+def roll_dice():
+    return random.randint(1, 6)
+
+def play_game():
+    player1_name = input("Enter name of Player 1: ")
+    player2_name = input("Enter name of Player 2: ")
+
+    player1_wins = 0
+    player2_wins = 0
+    rounds_to_win = 2
+
+    while player1_wins < rounds_to_win and player2_wins < rounds_to_win:
+        print(f"\n=== Round {player1_wins + player2_wins + 1} ===")
+        
+        # Player 1's turn
+        input(f"\n{player1_name}, press Enter to roll the dice...")
+        player1_roll = roll_dice()
+        print(f"{player1_name} rolled: {player1_roll}")
+
+        # Player 2's turn
+        input(f"\n{player2_name}, press Enter to roll the dice...")
+        player2_roll = roll_dice()
+        print(f"{player2_name} rolled: {player2_roll}")
+
+        # Determine round winner
+        if player1_roll > player2_roll:
+            print(f"\n{player1_name} wins this round!")
+            player1_wins += 1
+        elif player2_roll > player1_roll:
+            print(f"\n{player2_name} wins this round!")
+            player2_wins += 1
+        else:
+            print("\nIt's a tie for this round!")
+
+    # Determine overall winner
+    if player1_wins == rounds_to_win:
+        print(f"\nCongratulations, {player1_name} wins the game {player1_wins}-{player2_wins}!")
+    else:
+        print(f"\nCongratulations, {player2_name} wins the game {player2_wins}-{player1_wins}!")
+
+# Run the game
+play_game()
