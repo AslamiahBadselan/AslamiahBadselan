@@ -1,0 +1,60 @@
+#interactive quiz
+import random
+
+def quiz_game():
+    # Sample list of questions and answers
+    questions = [
+        {"question": "What is the meaning of USM?", "answer": "University of Southern Mindanao"},
+        {"question": "What is 2 + 3?", "answer": "5"},
+        {"question": "What is the chemical symbol element of potassium?", "answer": "K"},
+        {"question": "What is the largest planet in our solar system?", "answer": "Jupiter"},
+        {"question": "What is the chemical symbol for water?", "answer": "H2O"},
+        {"question": "In which year did the Titanic sink?", "answer": "1912"},
+        {"question": "What is the smallest prime number?", "answer": "2"},
+        {"question": "Who painted the Mona Lisa?", "answer": "Leonardo da Vinci"},
+        {"question": "What is the capital city of Japan?", "answer": "Tokyo"},
+        {"question": "Which element has the atomic number 1?", "answer": "Hydrogen"},
+        # Add more questions as needed
+    ]
+    
+    # Shuffle the questions to randomize the order
+    random.shuffle(questions)
+    
+    # Initialize variables to keep track of progress
+    score = 0
+    answers = []
+    
+    print("Welcome to the Quiz Game!")
+    print("You will be asked a series of questions. Try to answer them correctly.")
+    
+    # Iterate through each question in the quiz
+    for index, q in enumerate(questions, start=1):
+        print(f"\nQuestion {index}: {q['question']}")
+        user_answer = input("Your answer: ").strip()
+        
+        # Save the user's answer and compare it to the correct answer
+        is_correct = user_answer.lower() == q['answer'].strip().lower()
+        answers.append({
+            "question": q['question'], 
+            "your_answer": user_answer, 
+            "correct_answer": q['answer'], 
+            "is_correct": is_correct
+        })
+        
+        if is_correct:
+            print("Correct!")
+            score += 1
+        else:
+            print(f"Wrong! The correct answer was: {q['answer']}")
+    
+    # Display the final score
+    print(f"\nQuiz Complete! You scored {score} out of {len(questions)}.")
+    
+    # Provide a summary of the user's answers
+    print("\nHere are your answers:")
+    for answer in answers:
+        correctness = "Correct" if answer["is_correct"] else "Incorrect"
+        print(f"Q: {answer['question']}\nYour Answer: {answer['your_answer']} | Correct Answer: {answer['correct_answer']} | {correctness}\n")
+
+# Start the quiz
+quiz_game()
